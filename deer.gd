@@ -15,23 +15,9 @@ func move(playerpos:Vector2):
 	elif WALKTILE.get_cell_source_id(pos + Vector2(0, sign(playerpos.y-pos.y))) > -1:
 		pos.y += sign(playerpos.y-pos.y)
 		
-	if pos == playerpos:
-		print("fight")
 	position = pos * 64
 	
-'''
-func _input(event: InputEvent):
-	if event.is_action_pressed("up"):
-		if WALKTILE.get_cell_source_id(pos - Vector2(0, 1)) > -1:
-			pos -= Vector2(0, 1)
-	elif event.is_action_pressed("down"):
-		if WALKTILE.get_cell_source_id(pos + Vector2(0, 1)) > -1:
-			pos += Vector2(0, 1)
-	elif event.is_action_pressed("left"):
-		if WALKTILE.get_cell_source_id(pos - Vector2(1, 0)) > -1:
-			pos -= Vector2(1, 0)
-	elif event.is_action_pressed("right"):
-		if WALKTILE.get_cell_source_id(pos + Vector2(1, 0)) > -1:
-			pos += Vector2(1, 0)
-	position = pos * 64
-'''
+	if pos == playerpos:
+		get_node("/root/Main").message(null, "load", get_node("/root/Main/Cards"))
+		await get_node("/root/Main/Cards").start(texture);
+		get_node("/root/Main").message(null, "unload", get_parent())
