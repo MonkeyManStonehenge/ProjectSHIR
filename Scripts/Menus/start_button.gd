@@ -11,4 +11,6 @@ func _mouse_exit():
 func _input(event: InputEvent):
 	if event is InputEventMouseButton and mouseover:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == true:
-			get_node("/root/Main").message(self.get_parent(), "swap", get_node("/root/Main/Scene01"))
+			get_node("/root/Main").message(null, "load", get_node("/root/Main/Scene01"))
+			await get_node("/root/Main/Scene01").start()
+			get_node("/root/Main").message(null, "unload", self.get_parent())
